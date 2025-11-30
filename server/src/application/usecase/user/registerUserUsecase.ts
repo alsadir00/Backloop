@@ -2,8 +2,7 @@ import { User } from "@domain/entities/user.js";
 import { UserRepository } from "@domain/repositories/userRepository.js";
 import { PasswordService } from "@application/services/PassworService.js";
 import {RegisterUserSchema, RegisterUserInput } from "@application/schemas/RegisterUserSchema.js";
-import { id } from "zod/locales";
-import { email } from "zod";
+
 
 
 
@@ -23,11 +22,11 @@ export class RegisterUserUseCase {
 
         const passwordHash = await this.passwordService.hashPassword(validated.password);
 
-        const newUser = userExists.create({
+        const newUser = User.create({
             id: crypto.randomUUID(),
             email: validated.email,
             passwordHash: passwordHash,
-            name: validated.name
+            name: validated.name ?? 'User'
         });
 
         const createdUser = await this.userRepository.createUser(newUser);
