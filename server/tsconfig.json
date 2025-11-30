@@ -5,13 +5,13 @@
     "rootDir": "./src",
     "outDir": "./dist",
 
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "node16",
+    "module": "commonJS",
     "target": "es2022",
     // "types": [],
     // For nodejs:
