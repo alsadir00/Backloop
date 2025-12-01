@@ -5,6 +5,13 @@ export interface UserRepository {
     findUserByEmail(email: string): Promise<User | null>;
     findUserById(id: string): Promise<User | null>;
     getAllUsers(): Promise<User[]>;
-    updateUser(id: string, data: Partial<User>): Promise<User | null>;
+    updateUser(id: string,
+        patch: {
+            name?: string;
+            email?: string;
+            passwordHash?: string;
+        }
+    ): Promise<User | null>;
+    
     deleteUser(id: string): Promise<void>;
 }
