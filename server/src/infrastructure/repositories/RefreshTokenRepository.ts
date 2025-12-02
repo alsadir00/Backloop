@@ -41,6 +41,10 @@ export class MongoRefreshTokenRepository{
     await RefreshTokenModel.updateOne({ id }, { revoked: true }).exec();
   }
 
+  async revokeAllForUser(userId : string){
+    await RefreshTokenModel.updateMany({userId}, {revoked: true}).exec();
+  }
+
    async replace(oldId: string, newRow: Omit<RefreshTokenRow, "createdAt"> & { createdAt: Date }) {
     await RefreshTokenModel.updateOne({ id: oldId }, { rotatedTo: newRow.id, revoked: true }).exec();
     return this.create(newRow);
