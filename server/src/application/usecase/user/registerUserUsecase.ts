@@ -26,7 +26,7 @@ export class RegisterUserUseCase {
             id: crypto.randomUUID(),
             email: validated.email,
             passwordHash: passwordHash,
-            name: validated.name ?? 'User'
+            name: validated.name ?? "New User",
         });
 
         const createdUser = await this.userRepository.createUser(newUser);

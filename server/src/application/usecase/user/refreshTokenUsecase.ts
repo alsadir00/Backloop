@@ -3,21 +3,28 @@ import { jwtService } from "@infrastructure/security/jwtServices";
 import { compareRefreshToken, generateRefreshTokenPlain, hashRefreshToken } from "@infrastructure/security/refreshTokenService.js";
 import crypto from "crypto";
 
+type input = { 
+    rid: string;
+    token: string;
+    deviceInfo?: string;
+    ip?: string 
+}
+
 export class RefreshTokenUseCase {
   constructor(private refreshRepository: MongoRefreshTokenRepository) {}
 
-  async execute({ rid, token, deviceInfo, ip }: { rid: string; token: string; deviceInfo?: string; ip?: string }) {
+  async execute({ rid, token, deviceInfo, ip }:input ) {
     const row = await this.refreshRepository.findById(rid);
     if (!row || row.revoked) throw new Error("Invalid refresh token");
     if (row.expiresAt < new Date()) {
       await this.refreshRepository.revoke(row.id);
-      throw new Error("Refresh token expired");
+      throw new Error("Unauthorized User");
     }
 
     const match = await compareRefreshToken(token, row.tokenHash);
     if (!match) {
       await this.refreshRepository.revokeAllForUser(row.userId);
-      throw new Error("Refresh token reuse detected");
+      throw new Error("Access Denied");
     }
 
 

@@ -1,7 +1,7 @@
 import { UserRepository } from "@domain/repositories/userRepository.js";
 
 
-export class deleteUserUsecase{
+export class deleteUserUseCase{
     constructor(private userRepository : UserRepository){}
 
     async execute(userId : string){

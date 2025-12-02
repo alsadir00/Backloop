@@ -1,7 +1,7 @@
 import { UserRepository } from "@domain/repositories/userRepository.js";
 
 
-export class GetUserByIdUsecase {
+export class GetUserByIdUseCase {
     constructor(private userRepository: UserRepository) {}
 
     async execute(userId : string){

@@ -2,7 +2,7 @@ import { UserRepository } from "@domain/repositories/userRepository.js";
 import { updateUserSchema, updateUserInput } from "@application/schemas/UpdateUserSchema.js";
 import { PasswordService } from "@application/services/PassworService.js";
 
-export class UpadteUserUsecase {
+export class UpdateUserUseCase {
     constructor(
         private userRepository : UserRepository ,
         private passwordService : PasswordService
@@ -21,7 +21,7 @@ export class UpadteUserUsecase {
         }
 
         const updatedUser = await this.userRepository.updateUser(validated.id, patch)
-        if (!updatedUser) throw new Error("Failed to update user");
+        if (!updatedUser) throw new Error("Failed to update the user");
 
         return updatedUser.toJSON();
     }

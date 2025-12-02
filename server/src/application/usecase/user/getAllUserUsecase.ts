@@ -1,7 +1,7 @@
 import { User } from "@domain/entities/user.js";
 import { UserRepository } from "@domain/repositories/userRepository.js";
 
-export class GetAllUserUsecase{
+export class GetAllUserUseCase{
     constructor(private userRepository : UserRepository){}
 
     async execute() {

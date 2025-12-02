@@ -5,12 +5,12 @@ import { MongoRefreshTokenRepository } from "@infrastructure/repositories/Refres
 import { generateRefreshTokenPlain,hashRefreshToken } from "@infrastructure/security/refreshTokenService";
 import crypto from "crypto";
 import { jwtService } from "@infrastructure/security/jwtServices";
-import { date } from "zod";
 
 
 
 
-export class LoginUserUsecase {
+
+export class LoginUserUseCase {
     constructor(
         private userRepository: UserRepository,
         private passwordService: PasswordService,

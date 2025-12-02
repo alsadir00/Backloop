@@ -1,7 +1,7 @@
 import { MongoRefreshTokenRepository } from "@infrastructure/repositories/RefreshTokenRepository";
 
 
-export class LogoutUserUsecase {
+export class LogoutUserUseCase {
     constructor(private refreshRepository: MongoRefreshTokenRepository) {}
 
     async execute(rid: string) {
