@@ -2,6 +2,8 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
+
+    "typeRoots": ["./node_modules/@types", "./src/shared/constants"],
     "rootDir": "src",
     "outDir": "dist",
     "baseUrl": "src",
